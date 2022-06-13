@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucursales</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Productos Empresa</h1>
+        <button class="btn btn-danger" data-bs-target="#agregarModal" data-bs-toggle="modal">Agregar Producto</button>
+    </header>
+
+    <main>
+        <section class="sucursal-list">
+            <h2>Productos</h2>
+
+            <div id="sucursales" *ngFor="let producto of productos">
+
+                <div class="sucurusal">
+                    <div class="content">
+                        <input 
+                            type="text"
+                            class="text"
+                            value={{producto.nombre}}
+                            readonly
+                            />
+                            <input 
+                            type="text"
+                            class="text"
+                            value={{producto.proveedor}}
+                            readonly
+                            />
+                            <input 
+                            type="text"
+                            class="text"
+                            value={{producto.stock}}
+                            readonly
+                            />
+                            <div class="actions">
+                                <button class="edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="getOneProducto(producto)" data-bs-target="#actualizarModal" data-bs-toggle="modal" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                  </svg></button>
+                                <button class="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="getOneProducto(producto)" (click)="eliminarProducto()" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg></button>
+                                  <button class="view">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="getOneProducto(producto)" data-bs-target="#enviarProductoModal" data-bs-toggle="modal" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                      <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                                    </svg>
+                                  </button>
+                                
+                            </div>
+                    </div>
+                   
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+<!--Modal Agregar-->
+<div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <form #agregarForm="ngForm" (submit)="agregarProducto(agregarForm)" >
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input [(ngModel)]="producto.nombre" name="nombre" type="text" class="form-control" id="exampleInputEmail1" placeholder="Escribe aqui el nombre">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Proveedor</label>
+            <input [(ngModel)]="producto.proveedor" name="proveedor" type="text" class="form-control" id="exampleInputEmail1" placeholder="Escribe aqui el proveedor">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Stock</label>
+            <input [(ngModel)]="producto.stock" name="stock" type="number" class="form-control" id="exampleInputEmail1" placeholder="Escribe aqui el stock">
+          </div>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="boton3">Agregar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="boton1" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal actualizar -->
+    
+  <div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Sucursal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <form #actualizarForm="ngForm" (submit)="actualizarProducto()">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input [(ngModel)]="oneProducto.nombre" name="nombre" type="text" class="form-control" id="nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Proveedor</label>
+                  <input [(ngModel)]="oneProducto.proveedor" name="proveedor" type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Stock</label>
+                  <input [(ngModel)]="oneProducto.stock" name="stock" type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" id="boton3" data-bs-dismiss="modal" class="btn btn-primary">Actualizar</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="getProductos()" class="btn btn-success" id="boton1" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal Enviar Producto a sucursal-->
+
+<div class="modal fade" id="enviarProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enviar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+          <form #enviarProductoForm="ngForm" (submit)="enviarProducto(enviarProductoForm)">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input [(ngModel)]="productoSucursal.producto" name="nombre" type="text" class="form-control" id="nombre" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Stock</label>
+                <input [(ngModel)]="productoSucursal.stock" name="stock" type="number" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Sucursal</label>
+               <select [(ngModel)]="productoSucursal.sucursal" name="sucursal" class="form-control">
+                <option value="" selected disabled> Elige aqui la sucursal</option>
+                <option *ngFor="let sucursal of sucursales" value="{{sucursal._id}}">{{sucursal.direccion}}</option>
+               </select>
+              </div>
+              <button type="submit" id="boton3" data-bs-dismiss="modal" class="btn btn-primary">Enviar</button>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="boton1" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+

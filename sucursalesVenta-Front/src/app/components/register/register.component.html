@@ -1,0 +1,67 @@
+ <section class="body h-100">
+  <div class="container py-5 h-100">
+    <div class="container ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form  #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+                <div class="form-outline mb-4">
+                  <span *ngIf="!name.valid && name.touched" class="required">
+                    Required field
+                  </span>
+                  <input [(ngModel)]="user.nombre" name="name" #name="ngModel" type="text" id="form3Example1cg" class="form-control form-control-lg" required="" />
+                  <label class="form-label" for="form3Example1cg">company Name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <span *ngIf="!municipio.valid && municipio.touched" class="required">
+                    Required field
+                  </span>
+                  <input [(ngModel)]="user.municipio" name="municipio" #municipio="ngModel" type="text" id="form3Example3cg" class="form-control form-control-lg" required="" />
+                  <label class="form-label" for="form3Example3cg">Municipality</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <span *ngIf="!tipo.valid && tipo.touched" class="required">
+                    Required field
+                  </span>
+                  <input [(ngModel)]="user.tipo" name="type" #tipo="ngModel" type="text" id="form3Example4cg" class="form-control form-control-lg" required="" />
+                  <label class="form-label" for="form3Example4cg">Type of company</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <span *ngIf="!password.valid && password.touched" class="required">
+                    Required field
+                  </span>
+                  <input [(ngModel)]="user.password"  name="password" #password="ngModel" type="password" id="form3Example4cdg" class="form-control form-control-lg" required="" />
+                  <label  class="form-label" for="form3Example4cdg">password</label>
+                </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input ngModel name="check" class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" required />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="#!" class="link"><u>Terms of service</u></a>
+                  </label>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button [disabled]="!registerForm.form.valid" type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4">Register</button>
+                </div>
+
+                <p class="text-center  mt-5 mb-0">Have already an account? <a routerLink="/login"
+                    class="link fw-bold"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

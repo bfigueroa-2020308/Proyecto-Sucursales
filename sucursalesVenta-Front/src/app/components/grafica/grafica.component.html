@@ -1,0 +1,21 @@
+<div class="flex">
+    <div class="flex-item">
+      <div style="display: block;">
+      <canvas baseChart width="120" height="50"
+                  [data]="hola"
+                  [options]="lineChartOptions"
+                  [type]="lineChartType"></canvas>
+      </div>
+    </div>
+    <div class="flex-item">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of productos">{{label.nombre}}</th>
+        </tr>
+        <tr *ngFor="let d of productos; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of productos; let j=index">{{label.ventas}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>

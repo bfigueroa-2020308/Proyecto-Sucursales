@@ -1,0 +1,46 @@
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+    top: 13px;
+    }
+
+    .body{
+        background-color: black;
+    }
+
+    .card-body{
+        background-color: rgb(82, 82, 82);
+    }
+
+    .btn{
+        background-color: #b30505;
+        color: white;
+    }
+
+    h2{
+        color: white;
+    }
+
+    label{
+        color: white;
+    }
+
+    .text-body{
+        color: white;
+    }
+
+    p{
+        color: white;
+    }
+
+    .link{
+        color: aqua;
+    }
+
+    .required{
+        color: aqua;
+    }

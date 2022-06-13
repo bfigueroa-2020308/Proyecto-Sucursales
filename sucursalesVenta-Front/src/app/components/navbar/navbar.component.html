@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/image/valo.png" alt="..." height="36">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a  class="nav-link" routerLink="/home">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="token==''" class="nav-link" routerLink="/login">Login</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a *ngIf="token!=''" class="nav-link" routerLink="/sucursales">Sucursales</a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="token!=''" class="nav-link" routerLink="/productosEmpresa">Productos de la Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="identity.role=='ADMIN'" class="nav-link" routerLink="/empresas">Empresas</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
